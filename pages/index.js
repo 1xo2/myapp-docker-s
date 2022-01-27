@@ -49,10 +49,10 @@ export async function getStaticProps() {
   return {
     props:
     {
-      theEnvSecret: process.env.xxx || 
-      process.env.NEXT_PUBLIC_xxx  || 
-      publicRuntimeConfig.xxx ||
-      publicRuntimeConfig.NEXT_PUBLIC_xxx ||
+       theEnvSecret: process.env.xxx || 
+      //  process.env.NEXT_PUBLIC_xxx  || 
+      // publicRuntimeConfig.xxx ||
+      // publicRuntimeConfig.NEXT_PUBLIC_xxx ||
 
       new Date().toTimeString().slice(0, 8)
     }
