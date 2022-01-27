@@ -1,0 +1,49 @@
+name: 'secrets'
+description: 'get the env'
+inputs:
+  NEXT_PUBLIC_DATABASE_CONNECTION:  # id of input
+    description: 'NEXT_PUBLIC_DATABASE_CONNECTION'
+    required: true
+    # default: ''
+  NEXT_PUBLIC_PAYPAL_CLIENT_ID:  # id of input
+    description: 'NEXT_PUBLIC_PAYPAL_CLIENT_ID'
+    required: true
+    # default: ''
+  NEXT_PUBLIC_PAYPAL_SECRET:  # id of input
+    description: 'NEXT_PUBLIC_PAYPAL_SECRET'
+    required: true
+    # default: ''
+  NEXT_PUBLIC_CLOUDINARY_NAME:  # id of input
+    description: 'NEXT_PUBLIC_CLOUDINARY_NAME'
+    required: true
+    # default: ''
+  NEXT_PUBLIC_API_KEY:  # id of input
+    description: 'NEXT_PUBLIC_API_KEY'
+    required: true
+    # default: ''
+  NEXT_PUBLIC_API_SECRET:  # id of input
+    description: 'NEXT_PUBLIC_API_SECRET'
+    required: true
+    # default: ''
+  NEXT_PUBLIC_GOOGLE_MAP_API:  # id of input
+    description: 'NEXT_PUBLIC_GOOGLE_MAP_API'
+    required: true
+    # default: ''
+  NEXT_PUBLIC_JWT_TOKEN_SECRET:  # id of input
+    description: 'NEXT_PUBLIC_JWT_TOKEN_SECRET'
+    required: true
+    # default: ''
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{inputs.NEXT_PUBLIC_DATABASE_CONNECTION}}
+    - ${{inputs.NEXT_PUBLIC_PAYPAL_CLIENT_ID}}
+    - ${{inputs.NEXT_PUBLIC_PAYPAL_SECRET}}
+    - ${{inputs.NEXT_PUBLIC_CLOUDINARY_NAME}}
+    - ${{inputs.NEXT_PUBLIC_API_KEY}}
+    - ${{inputs.NEXT_PUBLIC_API_SECRET}}
+    - ${{inputs.NEXT_PUBLIC_GOOGLE_MAP_API}}
+    - ${{inputs.NEXT_PUBLIC_JWT_TOKEN_SECRET}}
+    

@@ -1,0 +1,63 @@
+# https://github.com/marketplace/actions/deploy-to-heroku
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2 
+      - run: | 
+          git config user.email "yanivsfreelance@gmail.com"   
+          git config user.name "1xo2"           
+          git pull      
+      - name: Deploy to Heroku        
+        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "shopping-cart-6-cd" #Must be unique in Heroku
+          heroku_email: "yanivsfreelance@gmail.com"
+          usedocker: true
+          # buildpack enable you to extend Heroku's build system to support your language or customizations, or to make particular binary packages available to the runtime.
+          buildpack: "https://github.com/HashNuke/heroku-buildpack-elixir.git"
+          stack: "container"
+          # healthcheck: "https://shopping-cart-6-cd.herokuapp.com/health" 
+          # checkstring: "ok"
+          # rollbackonhealthcheckfailed: true
+          docker_build_args: |
+            NODE_ENV                        
+            NEXT_PUBLIC_DATABASE_CONNECTION
+            NEXT_PUBLIC_JWT_TOKEN_SECRET
+            NEXT_PUBLIC_PAYPAL_CLIENT_ID
+            NEXT_PUBLIC_PAYPAL_SECRET
+            NEXT_PUBLIC_CLOUDINARY_NAME
+            NEXT_PUBLIC_API_KEY
+            NEXT_PUBLIC_API_SECRET
+            NEXT_PUBLIC_GOOGLE_MAP_API      
+      # - run: | 
+      #     git config user.email "yanivsfreelance@gmail.com"   
+      #     git config user.name "1xo2"           
+      #     git pull
+      # - run: | 
+      #     git config user.email "yanivsfreelance@gmail.com"   
+      #     git config user.name "1xo2" 
+      #     git add -A 
+      #     git commit -m "Updated code"
+      #     git push heroku main
+      
+        env:
+          NODE_ENV: production
+          NEXT_PUBLIC_DATABASE_CONNECTION: "${NEXT_PUBLIC_DATABASE_CONNECTION}"
+          NEXT_PUBLIC_JWT_TOKEN_SECRET: "${NEXT_PUBLIC_JWT_TOKEN_SECRET}"
+          NEXT_PUBLIC_PAYPAL_CLIENT_ID: "${NEXT_PUBLIC_PAYPAL_CLIENT_ID}"
+          NEXT_PUBLIC_PAYPAL_SECRET: "${NEXT_PUBLIC_PAYPAL_SECRET}"
+          NEXT_PUBLIC_CLOUDINARY_NAME: "${NEXT_PUBLIC_CLOUDINARY_NAME}"
+          NEXT_PUBLIC_API_KEY: "${NEXT_PUBLIC_API_KEY}"
+          NEXT_PUBLIC_API_SECRET: "${NEXT_PUBLIC_API_SECRET}"
+          NEXT_PUBLIC_GOOGLE_MAP_API: "${NEXT_PUBLIC_GOOGLE_MAP_API}"
+        if: always()

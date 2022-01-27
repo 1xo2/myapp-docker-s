@@ -1,0 +1,58 @@
+name: Build Docker image and deploy to Heroku
+
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
+  push:
+    branches:
+      - main
+env:
+  # global:
+  run: |
+    touch .env
+    echo NEXT_PUBLIC_DATABASE_CONNECTION= ${{secrets.NEXT_PUBLIC_DATABASE_CONNECTION}} >> .env 
+    
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: testing 123
+        run: |
+          touch .env
+          echo NEXT_PUBLIC_DATABASE_CONNECTION= ${{secrets.NEXT_PUBLIC_DATABASE_CONNECTION}} >> .env 
+    
+      - name: testing 123
+        run: |
+          echo "this is the NEXT_PUBLIC_DATABASE_CONNECTION from action.yml  ${{secrets.inputs.NEXT_PUBLIC_DATABASE_CONNECTION}}"
+
+      - name: Login to Heroku Container registry
+        env:
+          HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
+          # HEROKU_AUTH_TOKEN: ${{secrets.HEROKU_AUTH_TOKEN}}
+        run: heroku container:login
+      
+      - name: Build and push
+        env:
+          HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
+          # HEROKU_AUTH_TOKEN: ${{secrets.HEROKU_AUTH_TOKEN}}
+        run: heroku container:push -a myapp-docker-s web
+      
+      - name: Release
+        env:
+          HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
+          # HEROKU_AUTH_TOKEN: ${{secrets.HEROKU_AUTH_TOKEN}}
+        run: heroku container:release -a myapp-docker-s web
+
+      - name: create env file
+        run: |
+          touch .env
+          echo NEXT_PUBLIC_DATABASE_CONNECTION= ${{secrets.NEXT_PUBLIC_DATABASE_CONNECTION}} >> .env 
+
+
+    
+       
+        
+
+    

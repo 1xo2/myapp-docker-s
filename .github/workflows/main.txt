@@ -1,0 +1,41 @@
+#  https://github.com/marketplace/actions/heroku-auto-deployment
+
+name: Publish To Heroku With Docker
+on:
+  push:
+    branches: [master]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Dir
+        uses: actions/checkout@v2
+      - name: Heroku Deployment
+        uses: ElayGelbart/Heroku-Auto-Deployment@v1.0.6
+        with:
+          herokuApiKey: ${{secrets.HEROKU_API_KEY}}
+          herokuAppName: "shopping-cart-6-cd"
+          # herokuAppName: ${{ secrets.HEROKU_APP_NAME}}
+          useDocker: true 
+          # NODE_ENV: production
+          # NEXT_PUBLIC_DATABASE_CONNECTION: ${{secrets.NEXT_PUBLIC_DATABASE_CONNECTION}}
+          # NEXT_PUBLIC_JWT_TOKEN_SECRET: ${{secrets.NEXT_PUBLIC_JWT_TOKEN_SECRET}}
+          # NEXT_PUBLIC_PAYPAL_CLIENT_ID: ${{secrets.NEXT_PUBLIC_PAYPAL_CLIENT_ID}}
+          # NEXT_PUBLIC_PAYPAL_SECRET: ${{secrets.NEXT_PUBLIC_PAYPAL_SECRET}}
+          # NEXT_PUBLIC_CLOUDINARY_NAME: ${{secrets.NEXT_PUBLIC_CLOUDINARY_NAME}}
+          # NEXT_PUBLIC_API_KEY: ${{secrets.NEXT_PUBLIC_API_KEY}}
+          # NEXT_PUBLIC_API_SECRET: ${{secrets.NEXT_PUBLIC_API_SECRET}}
+          # NEXT_PUBLIC_GOOGLE_MAP_API: ${{secrets.NEXT_PUBLIC_GOOGLE_MAP_API}}
+        env:
+          NODE_ENV: production
+          NEXT_PUBLIC_DATABASE_CONNECTION: ${{secrets.NEXT_PUBLIC_DATABASE_CONNECTION}}
+          NEXT_PUBLIC_JWT_TOKEN_SECRET: ${{secrets.NEXT_PUBLIC_JWT_TOKEN_SECRET}}
+          NEXT_PUBLIC_PAYPAL_CLIENT_ID: ${{secrets.NEXT_PUBLIC_PAYPAL_CLIENT_ID}}
+          NEXT_PUBLIC_PAYPAL_SECRET: ${{secrets.NEXT_PUBLIC_PAYPAL_SECRET}}
+          NEXT_PUBLIC_CLOUDINARY_NAME: ${{secrets.NEXT_PUBLIC_CLOUDINARY_NAME}}
+          NEXT_PUBLIC_API_KEY: ${{secrets.NEXT_PUBLIC_API_KEY}}
+          NEXT_PUBLIC_API_SECRET: ${{secrets.NEXT_PUBLIC_API_SECRET}}
+          NEXT_PUBLIC_GOOGLE_MAP_API: ${{secrets.NEXT_PUBLIC_GOOGLE_MAP_API}}
+  
+
