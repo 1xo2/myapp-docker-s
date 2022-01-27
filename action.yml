@@ -1,6 +1,12 @@
 name: 'secrets'
 description: 'get the env'
 inputs:
+  xxx:  # id of input
+    description: 'xxx'
+    required: true
+  NEXT_PUBLIC_xxx:  # id of input
+    description: 'NEXT_PUBLIC_xxx'
+    required: true
   NEXT_PUBLIC_DATABASE_CONNECTION:  # id of input
     description: 'NEXT_PUBLIC_DATABASE_CONNECTION'
     required: true

@@ -10,7 +10,8 @@ env:
   # global:
   run: |
     touch .env
-    echo NEXT_PUBLIC_DATABASE_CONNECTION= ${{secrets.NEXT_PUBLIC_DATABASE_CONNECTION}} >> .env 
+    echo xxx= ${{secrets.xxx}} >> .env 
+    echo xxx= ${{secrets.NEXT_PUBLIC_xxx}} >> .env 
     
 
 jobs:
@@ -21,11 +22,12 @@ jobs:
       - name: testing 123
         run: |
           touch .env
-          echo NEXT_PUBLIC_DATABASE_CONNECTION= ${{secrets.NEXT_PUBLIC_DATABASE_CONNECTION}} >> .env 
+          echo xxx= ${{secrets.xxx}} >> .env 
+          echo xxx= ${{secrets.NEXT_PUBLIC_xxx}} >> .env 
     
       - name: testing 123
         run: |
-          echo "this is the NEXT_PUBLIC_DATABASE_CONNECTION from action.yml  ${{secrets.inputs.NEXT_PUBLIC_DATABASE_CONNECTION}}"
+          echo "this is the xxx from action.yml  ${{secrets.inputs.xxx}}"
 
       - name: Login to Heroku Container registry
         env:
@@ -48,7 +50,8 @@ jobs:
       - name: create env file
         run: |
           touch .env
-          echo NEXT_PUBLIC_DATABASE_CONNECTION= ${{secrets.NEXT_PUBLIC_DATABASE_CONNECTION}} >> .env 
+          echo xxx= ${{secrets.xxx}} >> .env 
+          echo xxx= ${{secrets.NEXT_PUBLIC_xxx}} >> .env 
 
 
     
