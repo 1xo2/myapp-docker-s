@@ -35,7 +35,7 @@ async function connect() {
         return "  DB connected ";
     } catch (err) {
         (err) => { console.log(' \r\n- NO: DB mongoose.connect:::error: \r\n', err) }
-        return "   xxxxxx DB NOT connected ";
+        return "   xxxxxx DB NOT connected "+ process?.env?.DATABASE_CONNECTION;
     }
 
 }
