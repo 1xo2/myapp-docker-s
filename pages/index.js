@@ -41,20 +41,20 @@ export default function Home({ topRatedProducts, theEnvSecret }) {
 
 export async function getStaticProps() {
 
-  const conn = await db.connect(process?.env?.DATABASE_CONNECTION);
-  // const
-  //   topRatedProducts = await productModel.find({}, '-reviews')
-  //     .lean()
-  //     .sort({ rating: -1 })
-  //     .limit(4)
+  const conn = await db.connect();
+  const
+    topRatedProducts = await productModel.find({}, '-reviews')
+      .lean()
+      .sort({ rating: -1 })
+      .limit(4)
 
   db.disconnect();
 
   return {
     props:
     {
-       topRatedProducts: {"a": "ddd"  },
-      //  topRatedProducts: topRatedProducts.map(db.cocStringify),
+      //  topRatedProducts: {"a": "ddd"  },
+       topRatedProducts: topRatedProducts.map(db.cocStringify),
        
       //  theEnvSecret: process.env.xxx || 
       theEnvSecret: conn ||

@@ -6,9 +6,6 @@ const mongoose = require('mongoose')
 const connection = {};
 
 async function connect(conn) {
-
-return conn
-
     if (connection.isConnected) {
         console.log('already connected')
         return "  DB connected ";
@@ -38,7 +35,7 @@ return conn
         return "  DB connected "+ conn? conn:'';
     } catch (err) {
         (err) => { console.log(' \r\n- NO: DB mongoose.connect:::error: \r\n', err) }
-        return "   xxxxxx DB NOT connected "+ + conn? conn:' connNOT' + '  --++++  '+process?.env?.DATABASE_CONNECTION ? process?.env?.DATABASE_CONNECTION : " ---- NO: process?.env?.DATABASE_CONNECTION";
+        return "   xxxxxx DB NOT connected "+ + conn? conn:' connNOT' + '  --++++  '+process?.env?.DATABASE_CONNECTION ? process?.env?.DATABASE_CONNECTION : " ---- not process?.env?.DATABASE_CONNECTION";
     }
 
 }
