@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import db from '../backend/db';
+import productModel from '../backend/DBModels/productModel';
+
 
 import getConfig from "next/config";
 const { publicRuntimeConfig } = getConfig();
@@ -8,7 +11,7 @@ const { publicRuntimeConfig } = getConfig();
 //  const NEXT_PUBLIC_DATABASE_CONNECTION= publicRuntimeConfig.NEXT_PUBLIC_DATABASE_CONNECTION
 
 
-export default function Home({ theEnvSecret }) {
+export default function Home({ topRatedProducts, theEnvSecret }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -24,7 +27,11 @@ export default function Home({ theEnvSecret }) {
           {theEnvSecret ? theEnvSecret : ":::no value "}
         </h1>
 
-
+        <h3>
+          {
+           JSON.stringify( topRatedProducts)
+          }
+        </h3>
 
       </main>
 
@@ -46,19 +53,28 @@ export default function Home({ theEnvSecret }) {
 
 export async function getStaticProps() {
 
+  await db.connect();
+  const
+    topRatedProducts = await productModel.find({}, '-reviews')
+      .lean()
+      .sort({ rating: -1 })
+      .limit(4)
+
+  db.disconnect();
+
   return {
     props:
     {
+      topRatedProducts: topRatedProducts.map(db.cocStringify),
       //  theEnvSecret: process.env.xxx || 
-       theEnvSecret: process.env.DATABASE_CONNECTION || 
-      
-      
-       //  process.env.NEXT_PUBLIC_xxx  || 
-      // publicRuntimeConfig.xxx ||
-      // publicRuntimeConfig.NEXT_PUBLIC_xxx ||
+      theEnvSecret: process.env.xxx ||
 
-      new Date().toTimeString().slice(0, 8)
+
+        //  process.env.NEXT_PUBLIC_xxx  || 
+        // publicRuntimeConfig.xxx ||
+        // publicRuntimeConfig.NEXT_PUBLIC_xxx ||
+
+        new Date().toTimeString().slice(0, 8)
     }
   }
 }
-
