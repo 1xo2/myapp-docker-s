@@ -10,7 +10,6 @@
   "dependencies": {
     "@actions/core": "^1.6.0",
     "@actions/github": "^5.0.0",
-    
     "@paypal/react-paypal-js": "^7.3.3",
     "@react-google-maps/api": "^2.5.0",
     "axios": "0.24.0",
@@ -40,7 +39,7 @@
   },
   "devDependencies": {
     "cypress": "^8.7.0",
-    
+    "eslint": "^8.7.0",
     "start-server-and-test": "^1.14.0"
   }
 }
