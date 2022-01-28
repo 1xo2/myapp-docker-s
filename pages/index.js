@@ -53,11 +53,11 @@ export async function getStaticProps() {
   return {
     props:
     {
-       topRatedProducts: {"a": String(process.env.DATABASE_CONNECTION)  },
+       topRatedProducts: {"a": "ddd"  },
       //  topRatedProducts: topRatedProducts.map(db.cocStringify),
        
-       theEnvSecret: process.env.xxx || 
-      // theEnvSecret: conn ||
+      //  theEnvSecret: process.env.xxx || 
+      theEnvSecret: conn ||
       // theEnvSecret: process.env.xxx ||
 
 
