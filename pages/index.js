@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import db from '../backend/db';
-// import productModel from '../backend/DBModels/productModel';
+import productModel from '../backend/DBModels/productModel';
 
 
 import getConfig from "next/config";
