@@ -41,7 +41,7 @@ export default function Home({ topRatedProducts, theEnvSecret }) {
 
 export async function getStaticProps() {
 
-  const conn = await db.connect();
+  const conn = await db.connect(process?.env?.DATABASE_CONNECTION);
   // const
   //   topRatedProducts = await productModel.find({}, '-reviews')
   //     .lean()
