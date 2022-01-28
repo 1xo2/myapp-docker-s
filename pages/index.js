@@ -27,11 +27,11 @@ export default function Home({ topRatedProducts, theEnvSecret }) {
           {theEnvSecret ? theEnvSecret : ":::no value "}
         </h1>
 
-        {/* <h3>
+        <h3>
           {
            JSON.stringify( topRatedProducts)
           }
-        </h3> */}
+        </h3>
 
       </main>
 
@@ -65,7 +65,8 @@ export async function getStaticProps() {
   return {
     props:
     {
-       topRatedProducts: topRatedProducts.map(db.cocStringify),
+       topRatedProducts: {"a": "aa"},
+      //  topRatedProducts: topRatedProducts.map(db.cocStringify),
        
       //  theEnvSecret: process.env.xxx || 
       theEnvSecret: conn ||
