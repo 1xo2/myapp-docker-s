@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import db from '../backend/db';
-import productModel from '../backend/DBModels/productModel';
+// import productModel from '../backend/DBModels/productModel';
 
 
 import getConfig from "next/config";
@@ -27,11 +27,11 @@ export default function Home({ topRatedProducts, theEnvSecret }) {
           {theEnvSecret ? theEnvSecret : ":::no value "}
         </h1>
 
-        <h3>
+        {/* <h3>
           {
            JSON.stringify( topRatedProducts)
           }
-        </h3>
+        </h3> */}
 
       </main>
 
@@ -53,12 +53,12 @@ export default function Home({ topRatedProducts, theEnvSecret }) {
 
 export async function getStaticProps() {
 
-  await db.connect();
-  const
-    topRatedProducts = await productModel.find({}, '-reviews')
-      .lean()
-      .sort({ rating: -1 })
-      .limit(4)
+  const conn = await db.connect();
+  // const
+  //   topRatedProducts = await productModel.find({}, '-reviews')
+  //     .lean()
+  //     .sort({ rating: -1 })
+  //     .limit(4)
 
   db.disconnect();
 
@@ -66,8 +66,10 @@ export async function getStaticProps() {
     props:
     {
        topRatedProducts: topRatedProducts.map(db.cocStringify),
+       
       //  theEnvSecret: process.env.xxx || 
-      theEnvSecret: process.env.xxx ||
+      theEnvSecret: conn ||
+      // theEnvSecret: process.env.xxx ||
 
 
         //  process.env.NEXT_PUBLIC_xxx  || 

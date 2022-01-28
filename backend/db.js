@@ -8,7 +8,7 @@ const connection = {};
 async function connect() {
     if (connection.isConnected) {
         console.log('already connected')
-        return;
+        return "  DB connected ";
     }
 
     if (mongoose.connections.length > 1) {
@@ -32,9 +32,10 @@ async function connect() {
         });
         connection.isConnected = db.connections[0].isReadyState;
         console.log("\r\n + YES: DB mongoose connect \r\n")
-
+        return "  DB connected ";
     } catch (err) {
         (err) => { console.log(' \r\n- NO: DB mongoose.connect:::error: \r\n', err) }
+        return "   xxxxxx DB NOT connected ";
     }
 
 }
