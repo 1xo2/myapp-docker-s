@@ -7,6 +7,10 @@ inputs:
   NEXT_PUBLIC_xxx:  # id of input
     description: 'NEXT_PUBLIC_xxx'
     required: true
+  DATABASE_CONNECTION:  # id of input
+    description: 'DATABASE_CONNECTION'
+    required: true
+    # default: ''
   NEXT_PUBLIC_DATABASE_CONNECTION:  # id of input
     description: 'NEXT_PUBLIC_DATABASE_CONNECTION'
     required: true
