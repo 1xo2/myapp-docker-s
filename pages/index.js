@@ -56,8 +56,8 @@ export async function getStaticProps() {
        topRatedProducts: {"a": String(process?.env?.DATABASE_CONNECTION?.slice(0, 8))  },
       //  topRatedProducts: topRatedProducts.map(db.cocStringify),
        
-      //  theEnvSecret: process.env.xxx || 
-      theEnvSecret: conn ||
+       theEnvSecret: process.env.xxx || 
+      // theEnvSecret: conn ||
       // theEnvSecret: process.env.xxx ||
 
 
