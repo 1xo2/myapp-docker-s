@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import db from '../backend/db';
-// import productModel from '../backend/DBModels/productModel';
+import productModel from '../backend/DBModels/productModel';
 
 
 import getConfig from "next/config";
@@ -54,18 +54,18 @@ export default function Home({ topRatedProducts, theEnvSecret }) {
 export async function getStaticProps() {
 
   await db.connect();
-  // const
-  //   topRatedProducts = await productModel.find({}, '-reviews')
-  //     .lean()
-  //     .sort({ rating: -1 })
-  //     .limit(4)
+  const
+    topRatedProducts = await productModel.find({}, '-reviews')
+      .lean()
+      .sort({ rating: -1 })
+      .limit(4)
 
   db.disconnect();
 
   return {
     props:
     {
-      // topRatedProducts: topRatedProducts.map(db.cocStringify),
+       topRatedProducts: topRatedProducts.map(db.cocStringify),
       //  theEnvSecret: process.env.xxx || 
       theEnvSecret: process.env.xxx ||
 
