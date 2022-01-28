@@ -6,6 +6,9 @@ const mongoose = require('mongoose')
 const connection = {};
 
 async function connect(conn) {
+
+return conn
+
     if (connection.isConnected) {
         console.log('already connected')
         return "  DB connected ";
